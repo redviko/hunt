@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import test.hunt_test.exception.CustomError;
 import test.hunt_test.model.Application;
 import test.hunt_test.service.ApplicationService;
 
@@ -18,6 +19,7 @@ public class ApplicationController {
     public ApplicationController(ApplicationService applicationService) {
         this.applicationService = applicationService;
     }
+
 
     @GetMapping("/all-distinct")
     public ResponseEntity<List<Application>> getAllDistinctByHuntTicketNumberAndHuntTicketSeries() {
