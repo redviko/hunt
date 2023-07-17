@@ -24,14 +24,6 @@ public class ApplicationResourceService {
         return applicationResourceRepository.findAllByOrderByApplicationDateOfCreationAsc();
     }
 
-    public List<ApplicationResource> findAllByStatusAndApplication_Id(ApplicationResourceStatus status, Long applicationId) {
-        return applicationResourceRepository.findAllByStatusAndApplication_Id(status, applicationId);
-    }
-
-    public List<String> getAllDistinctResources() {
-        return applicationResourceRepository.getAllDistinctName();
-    }
-
     public boolean checkApplicationDates(Resource resource, ApplicationResource applicationResource) {
         try {
             return (applicationResource.getCreatedAt().isAfter(resource.getStartDate()) || applicationResource.getCreatedAt().isEqual(resource.getStartDate())) &&

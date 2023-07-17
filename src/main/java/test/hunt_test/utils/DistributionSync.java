@@ -64,9 +64,5 @@ public class DistributionSync {
         return applicationResources.remove(0);
     }
 
-    public synchronized boolean isEmpty() {
-        return applicationResources.isEmpty();
-    }
-
 
 }
