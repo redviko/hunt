@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="create-test-hunt-database" author="redviko">
+
+        <createTable tableName="application">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="full_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="application_type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_of_issue" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="hunt_ticket_series" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="hunt_ticket_number" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+
+
+        <createTable tableName="resource">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quota" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="district" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+
+        <createTable tableName="application_resource">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="application_id" type="int">
+                <constraints nullable="false" foreignKeyName="application_resource_application_fk"
+                             referencedTableName="application" referencedColumnNames="id"/>
+            </column>
+            <column name="resource_id" type="int">
+                <constraints nullable="false" foreignKeyName="application_resource_resource_fk"
+                             referencedTableName="resource" referencedColumnNames="id"/>
+            </column>
+            <column name="requested_quota" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(255)">
+                <constraints nullable=" false"/>
+            </column>
+            <column name="created_at" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <insert tableName="application">
+            <column name="full_name" value="Абоба Амогусович Абобов"/>
+            <column name="application_type" value="MASS"/>
+            <column name="date_of_issue" value="2021-05-05"/>
+            <column name="hunt_ticket_series" value="1234"/>
+            <column name="hunt_ticket_number" value="123456"/>
+        </insert>
+        <insert tableName="application">
+            <column name="full_name" value="Баобаб Амонгус Баобабович"/>
+            <column name="application_type" value="LOTTERY"/>
+            <column name="date_of_issue" value="2021-05-05"/>
+            <column name="hunt_ticket_series" value="1234"/>
+            <column name="hunt_ticket_number" value="123456"/>
+        </insert>
+        <insert tableName="application">
+            <column name="full_name" value="Баобаб Амонгус Баобабович"/>
+            <column name="application_type" value="LOTTERY"/>
+            <column name="date_of_issue" value="2021-05-05"/>
+            <column name="hunt_ticket_series" value="1234"/>
+            <column name="hunt_ticket_number" value="123456"/>
+        </insert>
+
+
+        <insert tableName="resource">
+            <column name="name" value="Кабан"/>
+            <column name="quota" value="10"/>
+            <column name="district" value="Красноярский край"/>
+            <column name="start_date" value="2021-05-04"/>
+            <column name="end_date" value="2021-05-06"/>
+        </insert>
+        <insert tableName="resource">
+            <column name="name" value="Косуля"/>
+            <column name="quota" value="10"/>
+            <column name="district" value="Тюмень"/>
+            <column name="start_date" value="2021-05-04"/>
+            <column name="end_date" value="2021-05-06"/>
+        </insert>
+        <insert tableName="resource">
+            <column name="name" value="Косуля"/>
+            <column name="quota" value="10"/>
+            <column name="district" value="Тюмень"/>
+            <column name="start_date" value="2021-05-04"/>
+            <column name="end_date" value="2021-05-06"/>
+        </insert>
+
+
+        <insert tableName="application_resource">
+            <column name="application_id" value="1"/>
+            <column name="resource_id" value="1"/>
+            <column name="requested_quota" value="100"/>
+            <column name="status" value="NEW"/>
+            <column name="created_at" value="2023-01-01"/>
+        </insert>
+        <insert tableName="application_resource">
+            <column name="application_id" value="1"/>
+            <column name="resource_id" value="1"/>
+            <column name="requested_quota" value="3"/>
+            <column name="status" value="NEW"/>
+            <column name="created_at" value="2021-05-05"/>
+        </insert>
+        <insert tableName="application_resource">
+            <column name="application_id" value="2"/>
+            <column name="resource_id" value="2"/>
+            <column name="requested_quota" value="9"/>
+            <column name="status" value="NEW"/>
+            <column name="created_at" value="2021-05-06"/>
+        </insert>
+        <insert tableName="application_resource">
+            <column name="application_id" value="2"/>
+            <column name="resource_id" value="3"/>
+            <column name="requested_quota" value="3"/>
+            <column name="status" value="NEW"/>
+            <column name="created_at" value="2021-05-05"/>
+        </insert>
+        <insert tableName="application_resource">
+            <column name="application_id" value="1"/>
+            <column name="resource_id" value="2"/>
+            <column name="requested_quota" value="2"/>
+            <column name="status" value="NEW"/>
+            <column name="created_at" value="2021-05-04"/>
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>
